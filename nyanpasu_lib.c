@@ -3,7 +3,6 @@
 //
 
 #include <string.h>
-#include <time.h>
 #include <ctype.h>
 #include "standard_functions.h"
 
@@ -25,20 +24,6 @@ FILE *open_file(const char *fileName, const char *mode) {
     } else {
         return toOpen;
     }
-}
-
-
-void update_tm(struct tm* time, const int year, const int month, const int m_day,
-               const int hour, const int minute, const int seconds)
-{
-    time->tm_year += year;
-    time->tm_mon += month;
-    time->tm_mday += m_day;
-    time->tm_hour += hour;
-    time->tm_min += minute;
-    time->tm_sec += seconds;
-
-    mktime(time);
 }
 
 int input_word(char **word) {
