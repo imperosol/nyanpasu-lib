@@ -42,9 +42,9 @@ FILE *open_file(const char *fileName, const char *mode) {
 int input_word(char **word) {
     char temp[40];
     fgets(temp, 40, stdin);
+    temp[strlen(temp) - 1] = '\0';
     *word = safe_malloc(sizeof(char) * strlen(temp) + 1);
     strcpy(*word, temp);
-    printf("%s\n", *word);
     return 0;
 }
 
