@@ -1,2 +1,4 @@
 # nyanpasu-lib
-The functions I regularly use in my C projects
+Functions I regularly use in my C projects.
+
+Compatible with any OS.
