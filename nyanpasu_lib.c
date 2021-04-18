@@ -70,7 +70,7 @@ int str_to_int(const char * str) {
     int number = 0;
     /* security check */
     for (int i = 0; str[i] != '\0'; ++i) {
-        if (!is_digit(str[i]))
+        if (!isdigit(str[i]))
             return 0;
     }
     /* conversion */
