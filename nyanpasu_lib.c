@@ -1,7 +1,3 @@
-//
-// Created by thgir on 27/02/2021.
-//
-
 #include <string.h>
 #include <ctype.h>
 #include "standard_functions.h"
@@ -15,6 +11,8 @@ void *safe_malloc(size_t n) {
     return p;
 }
 
+#ifdef _WIN32
+/* Windows only function */
 FILE *open_file(const char *fileName, const char *mode) {
     int err;
     FILE *toOpen = NULL;
@@ -25,6 +23,21 @@ FILE *open_file(const char *fileName, const char *mode) {
         return toOpen;
     }
 }
+#endif
+
+#ifndef _WIN32
+/* Function compatible with any OS, but do not return the precise error in case of failure */
+FILE *open_file(const char *fileName, const char *mode) {
+    FILE *toOpen = NULL;
+    toOpen = fopen(fileName, mode);
+    if (toOpen == NULL) {
+        fprintf(stderr, "cannot open file");
+        exit(1);
+    } else {
+        return toOpen;
+    }
+}
+#endif
 
 int input_word(char **word) {
     char temp[40];
