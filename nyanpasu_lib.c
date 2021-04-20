@@ -66,6 +66,7 @@ void swap(void *a, void *b, size_t len) {
     }
 }
 
+/* The atoi function already exists in stdlib.h, you fucking donkey */
 int str_to_int(const char * str) {
     int number = 0;
     /* security check */
