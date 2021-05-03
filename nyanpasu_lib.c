@@ -40,6 +40,8 @@ FILE *open_file(const char *fileName, const char *mode) {
 #endif
 
 int input_word(char **word) {
+    if (*word != NULL)
+        free(*word);
     char temp[40];
     fgets(temp, 40, stdin);
     temp[strlen(temp) - 1] = '\0';
