@@ -59,25 +59,11 @@ int power_of_two(int power) {
     return 0b1 << power;
 }
 
-void swap(void *a, void *b, size_t len) {
+void swap(void *restrict a, void *restrict b, size_t len) {
     unsigned char *p = a, *q = b, tmp;
     for (size_t i = 0; i != len; ++i) {
         tmp = p[i];
         p[i] = q[i];
         q[i] = tmp;
     }
-}
-
-/* The atoi function already exists in stdlib.h, you fucking donkey */
-int str_to_int(const char * str) {
-    int number = 0;
-    /* security check */
-    for (int i = 0; str[i] != '\0'; ++i) {
-        if (!isdigit(str[i]))
-            return 0;
-    }
-    /* conversion */
-    for (int i = strlen(str) - 1, power = 1; i >= 0; --i, power *= 10)
-        number += (str[i] - '0') * power;
-    return number;
 }
