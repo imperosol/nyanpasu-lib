@@ -2,8 +2,8 @@
 // Created by thgir on 27/02/2021.
 //
 
-#ifndef BATAILLE_NAVALE_UTBM_NYANPASU_LIB_H
-#define BATAILLE_NAVALE_UTBM_NYANPASU_LIB_H
+#ifndef NYANPASU_LIB_H
+#define NYANPASU_LIB_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -54,7 +54,7 @@ int power_of_two(int power);
  * @param b  : a pointer to the second variable
  * @param len : the size in memory of a and b
  */
-void swap(void *a, void *b, size_t len);
+void swap(void *restrict a, void *restrict b, size_t len);
 
 /**
  * Come on, are you really dumb enough to use this function
@@ -62,5 +62,5 @@ void swap(void *a, void *b, size_t len);
  */
 int str_to_int(const char * str);
 
-#endif //BATAILLE_NAVALE_UTBM_NYANPASU_LIB_H
+#endif //NYANPASU_LIB_H
 
