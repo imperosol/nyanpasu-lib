@@ -1,6 +1,6 @@
 #include <string.h>
 #include <ctype.h>
-#include "standard_functions.h"
+#include "nyanpasu_lib.h"
 
 void *safe_malloc(size_t n) {
     void *p = malloc(n);
