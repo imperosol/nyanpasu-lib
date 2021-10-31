@@ -29,10 +29,19 @@ FILE *open_file(const char *fileName, const char *mode);
 /**
  * Secured alternative to scanf("%s", word).
  * Scans the whole line and allocate the exact memory size needed for it
- * @example char * str;  input_word(&str);
+ * @example char * str = NULL;  input_word(&str);
+ * @warning do not use on an unitialized pointer. The pointer must at least have been initialized to NULL.
  * @param word : a pointer to the char array
  */
 void input_word(char **word);
+
+/**
+* Secured alternative to scanf("%d", &n).
+* Scans an int in the stdin and returns it.
+* @example int n = scan_int();
+* @return the integer input by the user in the stdin
+*/
+int scan_int(void);
 
 /**
  * Clear the buffer.
@@ -55,12 +64,6 @@ int power_of_two(int power);
  * @param len : the size in memory of a and b
  */
 void swap(void *restrict a, void *restrict b, size_t len);
-
-/**
- * Come on, are you really dumb enough to use this function
- * instead of the atoi() function of <stdlib.h> ?
- */
-int str_to_int(const char * str);
 
 #endif //NYANPASU_LIB_H
 
