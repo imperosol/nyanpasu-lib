@@ -1,5 +1,4 @@
 #include <string.h>
-#include <ctype.h>
 #include "nyanpasu_lib.h"
 
 void *safe_malloc(size_t n) {
@@ -42,11 +41,17 @@ FILE *open_file(const char *fileName, const char *mode) {
 void input_word(char **word) {
     if (*word != NULL)
         free(*word);
-    char temp[40];
-    fgets(temp, 40, stdin);
+    char temp[50];
+    fgets(temp, 49, stdin);
     temp[strlen(temp) - 1] = '\0';
     *word = safe_malloc(sizeof(char) * strlen(temp) + 1);
     strcpy(*word, temp);
+}
+
+int scan_int(void) {
+    char temp[50];
+    fgets(temp, 49, stdin);
+    return strtol(temp, NULL, 10);
 }
 
 void clear_buffer(void) {
@@ -58,11 +63,10 @@ int power_of_two(int power) {
     return 0b1 << power;
 }
 
-void swap(void *restrict a, void *restrict b, size_t len) {
-    unsigned char *p = a, *q = b, tmp;
-    for (size_t i = 0; i != len; ++i) {
-        tmp = p[i];
-        p[i] = q[i];
-        q[i] = tmp;
-    }
+void swap(void *restrict a, void *restrict b, const size_t len) {
+    void *tmp = safe_malloc(len);
+    tmp = memcpy(tmp, a, len);
+    memcpy(a, b, len);
+    memcpy(b, tmp, len);
+    free(tmp);
 }
