@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /**
  * Works in the same way as a classical malloc(), but handles exceptions
@@ -15,7 +14,7 @@
  * @param n : the size of the memory to allocate
  * @return a pointer to the allocated memory
  */
-void * safe_malloc(size_t n);
+__attribute__((unused)) void * safe_malloc(size_t n);
 
 /**
  * Works in the same way as a classical fopen(), but handles exceptions
@@ -24,46 +23,80 @@ void * safe_malloc(size_t n);
  * @param mode : the opening mode
  * @return a pointer to the opened file
  */
-FILE *open_file(const char *fileName, const char *mode);
+__attribute__((unused)) FILE *open_file(const char *restrict fileName, const char *restrict mode);
 
 /**
  * Secured alternative to scanf("%s", word).
  * Scans the whole line and allocate the exact memory size needed for it
- * @example char * str = NULL;  input_word(&str);
- * @warning do not use on an unitialized pointer. The pointer must at least have been initialized to NULL.
+ * @example char * str;  input_word(&str);
  * @param word : a pointer to the char array
  */
-void input_word(char **word);
+__attribute__((unused)) void input_word(char **word);
 
 /**
-* Secured alternative to scanf("%d", &n).
-* Scans an int in the stdin and returns it.
-* @example int n = scan_int();
-* @return the integer input by the user in the stdin
-*/
-int scan_int(void);
+ * Works the same way as input_word(), but the input stream can be explicitly selected
+ * Useful when needing to read a string from a file
+ * @example char * str;  input_word(&str, stdin);
+ * @example char * str; FILE *foo = fopen(filename, "r");  input_word(&str, foo);
+ * @param word : a pointer to the char array
+ */
+__attribute__((unused)) void input_word_from_file(char **word, struct _iobuf *stream);
+
+/**
+ * Secured alternative to scanf("%d", var).
+ * Scans an int and returns it, without buffer overflow.
+ * @example int foo = scant_int();
+ * @return the integer scanned from the stdin
+ */
+__attribute__((unused)) int scan_int(void);
+
+/**
+ * Works the same way as scan_int(), but the  input stream can be explicitly selected
+ * @return the integer scanned from the selected stream
+ */
+__attribute__((unused)) int scan_int_from_file(struct _iobuf *stream);
+
+/**
+ * Works the same way as scan_int_from_file(), but multiple values can be scanned
+ * The values can be input by user one on each line or all on the same line, with whitespace as a separator,
+ * both methods work.
+ * @example int array[5]; scan_int_array(stdin, array, 5);
+ * @param stream : the stream from which the data must be read
+ * @param array : the address of the array to fill wit values
+ * @param nb_values : the number of values to be read
+ */
+__attribute__((unused)) void scan_int_array(struct _iobuf *stream, int *array, int nb_values);
 
 /**
  * Clear the buffer.
  * @warning If stdin contains no \ n character, the program will freeze until the user press enter
  */
-void clear_buffer(void);
+__attribute__((unused)) void clear_buffer(void);
 
 /**
  * calculates 2^n, with n given by the user.
  * @param power : the power of n
  * @return an int corresponding to 2^n
  */
-int power_of_two(int power);
+__attribute__((unused)) int power_of_two(int power);
 
 /**
- * Swaps two variables, whatever their type is
+ * Swaps two variables, whatever their v_type is
  * @example swap(&varA, &varB, sizeof(a))
  * @param a : a pointer to the first variable
  * @param b  : a pointer to the second variable
  * @param len : the size in memory of a and b
  */
-void swap(void *restrict a, void *restrict b, size_t len);
+__attribute__((unused)) void swap(void *restrict a, void *restrict b, size_t len);
+
+/**
+ * Counts the number of times a character appears in a string
+ * @param str : the string in which the character must be searched
+ * @param searched_char : the searched character
+ * @return the number of times the wanted character has been found in the str
+ * @example char foo[] = "Hello, World!"; unsigned int bar = count_char(foo, 'l');
+ */
+__attribute__((unused)) unsigned int count_char(const char *str, char searched_char);
+
 
 #endif //NYANPASU_LIB_H
-
