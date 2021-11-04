@@ -54,13 +54,15 @@ __attribute__((unused)) void input_word_from_file(char **word, struct _iobuf *st
     strcpy(*word, temp);
 }
 
-__attribute__((unused)) int scan_int(void) {
+__attribute__((unused)) int input_int(const char * const message) {
+    if (message != NULL)
+        printf("%s ", message);
     char temp[50];
     fgets(temp, 49, stdin);
     return strtol(temp, NULL, 10);
 }
 
-__attribute__((unused)) int scan_int_from_file(struct _iobuf *stream) {
+__attribute__((unused)) int input_int_from_file(struct _iobuf *stream) {
     char temp[50];
     fgets(temp, 49, stream);
     return strtol(temp, NULL, 10);
