@@ -45,16 +45,17 @@ __attribute__((unused)) void input_word_from_file(char **word, struct _iobuf *st
 /**
  * Secured alternative to scanf("%d", var).
  * Scans an int and returns it, without buffer overflow.
- * @example int foo = scant_int();
+ * @example int foo = scant_int("please input an integer :"); // with message
+ * @example int foo = scant_int(NULL); // without message
  * @return the integer scanned from the stdin
  */
-__attribute__((unused)) int scan_int(void);
+__attribute__((unused)) int input_int(const char *message);
 
 /**
- * Works the same way as scan_int(), but the  input stream can be explicitly selected
+ * Works the same way as input_int(), but the  input stream can be explicitly selected
  * @return the integer scanned from the selected stream
  */
-__attribute__((unused)) int scan_int_from_file(struct _iobuf *stream);
+__attribute__((unused)) int input_int_from_file(struct _iobuf *stream);
 
 /**
  * Works the same way as scan_int_from_file(), but multiple values can be scanned
